@@ -11,6 +11,7 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/registro', [RegistroController::class, 'index']);
+Route::post('/registro', [RegistroController::class, 'store'])->name('registrar.usuario');
 
 Route::get('/files', function () {
     return view('file', [

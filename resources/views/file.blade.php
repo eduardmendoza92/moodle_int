@@ -5,7 +5,7 @@
 @section('content') <!-- Contenido principal -->
 <div class="untree_co-hero inner-page" >
     <div class="container">
-        <div class="row align-items-center justify-content-center">
+        <div class="row align-items-center justify-content-center" style="z-index: 1;">
             <div class="col-12">
                 <div class="row justify-content-center ">
                     <div class="col-lg-6 text-center ">
@@ -18,7 +18,7 @@
     </div> <!-- /.container -->
 
 </div> <!-- /.untree_co-hero -->
-<div class="untree_co-section">
+<div class="untree_co-section" style="z-index: 2;">
     <div class="container">
 
         <div class="row mb-5 justify-content-center">

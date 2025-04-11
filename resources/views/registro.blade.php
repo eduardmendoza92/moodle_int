@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="{{ asset('fonts/flaticon/font/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-    <title>Learner Free Bootstrap Template by Untree.co</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23007bff'/><text x='50%' y='55%' font-size='40' text-anchor='middle' fill='white' font-family='Arial' dy='.3em'>L</text></svg>">
+    <title>Registro de Usuario</title>
 </head>
 
 <body>
@@ -113,7 +113,7 @@
     </nav>
 
 
-    <div class="untree_co-hero inner-page overlay" style="background-image: url('images/img-school-5-min.jpg');">
+    <div class="untree_co-hero inner-page overlay" style="background-image: url('images/img-school-5-min.jpg'); z-index: 1;">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12">
@@ -132,34 +132,45 @@
 
 
 
-    <div class="untree_co-section">
+    <div class="untree_co-section" style="z-index: 2;">
         <div class="container">
 
             <div class="row mb-5 justify-content-center">
                 <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
-                    <form action="#" class="form-box">
+                    <form action="{{ route('registrar.usuario') }}" method="POST" class="form-box">
+                        @csrf
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="username" class="form-control" placeholder="Username" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="text" class="form-control" placeholder="Nombre">
+                                <input type="text" name="firstname" class="form-control" placeholder="Nombre" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="text" class="form-control" placeholder="Apellido(s)">
+                                <input type="text" name="lastname" class="form-control" placeholder="Apellido(s)" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="text" class="form-control" placeholder="Dirección Email">
+                                <input type="email" name="email" class="form-control" placeholder="Dirección Email" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
                             </div>
-
                             <div class="col-12">
-                                <input type="submit" value="Registrarse" class="btn btn-primary" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">
+                                <button type="submit" class="btn btn-primary">Registrarse</button>
                             </div>
                         </div>
                     </form>
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
+                    @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                    @endif
                 </div>
             </div>
 
