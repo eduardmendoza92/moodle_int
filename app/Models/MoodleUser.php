@@ -9,17 +9,94 @@ class MoodleUser extends Model
 {
     use HasFactory;
 
-    // Especifica el nombre de la tabla
     protected $table = 'mdl_user';
 
-    // Desactiva los timestamps (created_at y updated_at) si no existen en la tabla
     public $timestamps = false;
 
-    // Define los campos que se pueden llenar masivamente (opcional)
     protected $fillable = [
+        'auth',
+        'confirmed',
+        'policyagreed',
+        'deleted',
+        'suspended',
+        'mnethostid',
         'username',
+        'password',
+        'idnumber',
         'firstname',
         'lastname',
         'email',
+        'emailstop',
+        'phone1',
+        'phone2',
+        'institution',
+        'department',
+        'address',
+        'city',
+        'country',
+        'lang',
+        'calendartype',
+        'theme',
+        'timezone',
+        'firstaccess',
+        'lastaccess',
+        'lastlogin',
+        'currentlogin',
+        'lastip',
+        'secret',
+        'picture',
+        'description',
+        'descriptionformat',
+        'mailformat',
+        'maildigest',
+        'maildisplay',
+        'autosubscribe',
+        'trackforums',
+        'timecreated',
+        'timemodified',
+        'trustbitmask',
+        'imagealt',
+        'lastnamephonetic',
+        'firstnamephonetic',
+        'middlename',
+        'alternatename',
+        'moodlenetprofile',
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'secret',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'confirmed' => 'boolean',
+            'policyagreed' => 'boolean',
+            'deleted' => 'boolean',
+            'suspended' => 'boolean',
+            'emailstop' => 'boolean',
+            'descriptionformat' => 'integer',
+            'mailformat' => 'boolean',
+            'maildigest' => 'boolean',
+            'maildisplay' => 'integer',
+            'autosubscribe' => 'boolean',
+            'trackforums' => 'boolean',
+            'timecreated' => 'datetime',
+            'timemodified' => 'datetime',
+        ];
+    }
+
+    public function curriculum()
+    {
+        return $this->hasMany(MdlFile::class, 'userid', 'id')->where('filearea', 'files_1');
+    }
+
+    public function documentation()
+    {
+        return $this->hasMany(MdlFile::class, 'userid', 'id')->where('filearea', 'files_2');
+    }
 }

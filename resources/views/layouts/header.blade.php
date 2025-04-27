@@ -1,12 +1,21 @@
+
+<div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    
 <nav class="site-nav mb-5">
          <div class="pb-2 top-bar mb-3">
             <div class="container">
                 <div class="row align-items-center">
 
                     <div class="col-6 col-lg-9">
-                        <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> <span class="d-none d-lg-inline-block">{{ $statusdb}}</span></a>
                         <!-- <a href="#" class="small mr-3"><span class="icon-phone mr-2"></span> <span class="d-none d-lg-inline-block">10 20 123 456</span></a> -->
-                        <!-- <a href="#" class="small mr-3"><span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block">info@mydomain.com</span></a> -->
+                        <!-- <a href="#" class="small mr-3"><span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block">info@mydomain.com</sppan></a> -->
                     </div>
 
                      <div class="col-6 col-lg-3 text-right">
@@ -45,7 +54,8 @@
                                 <li><a href="#">Menu Three</a></li>
                             </ul>
                         </li> -->
-                        <li class="{{ request()->is('files') ? 'active' : '' }}"><a href="/files">Subir Documentos</a></li>
+                        <li class="{{ request()->is('users') ? 'active' : '' }}"><a href="/users">Usuarios</a></li>
+                        <li ><a href="/registro">Registro</a></li>
                         <!--                         <li><a href="news.html">News</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="about.html">About</a></li>
