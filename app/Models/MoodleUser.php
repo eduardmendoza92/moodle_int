@@ -99,4 +99,17 @@ class MoodleUser extends Model
     {
         return $this->hasMany(MdlFile::class, 'userid', 'id')->where('filearea', 'files_2');
     }
+
+    public static function validateUser($username, $password)
+    {
+        // Buscar el usuario por nombre de usuario
+        $user = self::where('username', $username)->first();
+
+        // Verificar si el usuario existe y la contraseña es válida
+        if ($user && password_verify($password, $user->password)) {
+            return $user; // Retornar el usuario si es válido
+        }
+
+        return null; // Retornar null si no es válido
+    }
 }

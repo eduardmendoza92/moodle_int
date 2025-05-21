@@ -5,6 +5,18 @@
 @section('content') <!-- Contenido principal -->
 <div class="row mb-5 justify-content-center">
     <div class="col-lg-12 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
+        @if (session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger mt-3">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <form>
             <div class="table-responsive table-striped">
                 <table class="table table-bordered">
@@ -31,7 +43,11 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <li><a class="dropdown-item" href="{{ route('profile.edit', $user->id) }}">Editar Perfil</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('users.inactivate', $user->id) }}">Inactivar</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('users.toggleSuspend', $user->id) }}">
+                                                {{ $user->suspended ? 'Reactivar' : 'Suspender' }}
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>

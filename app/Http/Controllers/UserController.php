@@ -31,7 +31,7 @@ class UserController extends Controller
         $user = MoodleUser::findOrFail($id);
         $user->update($request->only(['firstname', 'lastname', 'email']));
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente.');
     }
 
     public function destroy($id)
@@ -39,7 +39,7 @@ class UserController extends Controller
         $user = MoodleUser::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente.');
     }
 
     public function editProfile($id)
@@ -99,5 +99,28 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index')->with('success', 'Perfil actualizado correctamente.');
+    }
+
+    public function suspend($id)
+    {
+        $user = MoodleUser::findOrFail($id);
+
+        // Cambiar el estado de suspensión
+        $user->suspended = 1; // 1 significa suspendido
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'La cuenta del usuario ha sido suspendida.');
+    }
+
+    public function toggleSuspend($id)
+    {
+        $user = MoodleUser::findOrFail($id);
+
+        // Alternar el estado de suspensión
+        $user->suspended = !$user->suspended; // Cambia entre 0 y 1
+        $user->save();
+
+        $message = $user->suspended ? 'La cuenta del usuario ha sido suspendida.' : 'La cuenta del usuario ha sido reactivada.';
+        return redirect()->route('users.index')->with('success', $message);
     }
 }
