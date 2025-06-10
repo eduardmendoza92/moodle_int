@@ -1,9 +1,3 @@
-<!-- /*
-* Template Name: Learner
-* Template Author: Untree.co
-* Tempalte URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
 <!doctype html>
 <html lang="en">
 
@@ -59,13 +53,9 @@
                     </div>
 
                     <div class="col-6 col-lg-3 text-right">
-                        <!-- <a href="login.html" class="small mr-3">
+                        <a href="/login" class="small mr-3">
                             <span class="icon-lock"></span>
                             Log In
-                        </a> -->
-                        <a href="register.html" class="small">
-                            <span class="icon-person"></span>
-                            Register
                         </a>
                     </div>
 
@@ -75,31 +65,14 @@
         <div class="sticky-nav js-sticky-header">
             <div class="container position-relative">
                 <div class="site-navigation text-center">
-                    <a href="index.html" class="logo menu-absolute m-0">Learner<span class="text-primary">.</span></a>
+                    <a href="/home" class="logo menu-absolute m-0">Learner<span class="text-primary">.</span></a>
 
                     <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
-                        <li class="{{ request()->is('home') ? 'active' : '' }}" ><a href="/home">Home</a></li>
-                        <!-- <li class="has-children">
-                            <a href="#">Dropdown</a>
-                            <ul class="dropdown">
-                                <li><a href="elements.html">Elements</a></li>
-                                <li class="has-children">
-                                    <a href="#">Menu Two</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Sub Menu One</a></li>
-                                        <li><a href="#">Sub Menu Two</a></li>
-                                        <li><a href="#">Sub Menu Three</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Menu Three</a></li>
-                            </ul>
-                        </li> -->
-                        <li ><a href="/users">Usuarios</a></li>
-                        <li class="active"><a href="/users">Registro</a></li>
-                        <!--                         <li><a href="news.html">News</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li> -->
+                        @if (session('authenticated'))
+                            <li class="{{ request()->is('home') ? 'active' : '' }}"><a href="/home">Home</a></li>
+                            <li><a href="/users">Usuarios</a></li>
+                            <li class="active"><a href="/users">Registro</a></li>
+                        @endif
                     </ul>
 
                     <!-- <a href="#" class="btn-book btn btn-secondary btn-sm menu-absolute">Enroll Now</a> -->
@@ -131,64 +104,64 @@
     </div> <!-- /.untree_co-hero -->
 
 
-<div class="untree_co-section" style="z-index: 2;">
-    <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
-                <form action="{{ route('registrar.usuario') }}" method="POST" class="form-box" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-12 mb-3">
-                            <input type="text" name="username" class="form-control" placeholder="Username" required>
-                        </div>
+    <div class="untree_co-section" style="z-index: 2;">
+        <div class="container">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
+                    <form action="{{ route('registrar.usuario') }}" method="POST" class="form-box" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                            </div>
 
-                        <div class="col-12 mb-3">
-                            <input type="text" name="firstname" class="form-control" placeholder="Nombre" required>
-                        </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" name="firstname" class="form-control" placeholder="Nombre" required>
+                            </div>
 
-                        <div class="col-12 mb-3">
-                            <input type="text" name="lastname" class="form-control" placeholder="Apellido(s)" required>
-                        </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" name="lastname" class="form-control" placeholder="Apellido(s)" required>
+                            </div>
 
-                        <div class="col-12 mb-3">
-                            <input type="email" name="email" class="form-control" placeholder="Dirección Email" required>
-                        </div>
+                            <div class="col-12 mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Dirección Email" required>
+                            </div>
 
-                        <div class="col-12 mb-3">
-                            <input type="password" name="password" class="form-control" placeholder="Password" required>
-                        </div>
+                            <div class="col-12 mb-3">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            </div>
 
-                        <div class="col-12 mb-3">
-                            <label for="curriculum" class="form-label">Curriculum (PDF, DOC, DOCX)</label>
-                            <input type="file" class="form-control" id="curriculum" name="curriculum">
-                        </div>
+                            <div class="col-12 mb-3">
+                                <label for="curriculum" class="form-label">Curriculum (PDF, DOC, DOCX)</label>
+                                <input type="file" class="form-control" id="curriculum" name="curriculum">
+                            </div>
 
-                        <div class="col-12 mb-3">
-                            <label for="documentation" class="form-label">Documentación (hasta 4 archivos, PDF, DOC, DOCX, JPG, PNG)</label>
-                            <input type="file" class="form-control" id="documentation" name="documentation[]" multiple>
-                        </div>
+                            <div class="col-12 mb-3">
+                                <label for="documentation" class="form-label">Documentación (hasta 4 archivos, PDF, DOC, DOCX, JPG, PNG)</label>
+                                <input type="file" class="form-control" id="documentation" name="documentation[]" multiple>
+                            </div>
 
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Registrarse</button>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Registrarse</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
 
-                @if(session('success'))
+                    @if(session('success'))
                     <div class="alert alert-success mt-3">
                         {{ session('success') }}
                     </div>
-                @endif
+                    @endif
 
-                @if(session('error'))
+                    @if(session('error'))
                     <div class="alert alert-danger mt-3">
                         {{ session('error') }}
                     </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <div class="site-footer">
 

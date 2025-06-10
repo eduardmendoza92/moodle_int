@@ -75,6 +75,9 @@ class UserController extends Controller
                     'pathnamehash' => sha1('/' . $file->getClientOriginalName()),
                     'timecreated' => time(),
                     'timemodified' => time(),
+                    'contextid' => 1,
+                    'itemid' => 0,
+                    'component' => 'user',
                 ]
             );
         }
@@ -94,6 +97,9 @@ class UserController extends Controller
                     'pathnamehash' => sha1('/' . $file->getClientOriginalName()),
                     'timecreated' => time(),
                     'timemodified' => time(),
+                    'contextid' => 1,
+                    'itemid' => 0,
+                    'component' => 'user',
                 ]);
             }
         }

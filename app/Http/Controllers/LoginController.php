@@ -29,12 +29,19 @@ class LoginController extends Controller
             }
 
             // Iniciar sesión o marcar como autenticado
-            session(['authenticated' => true]);
+            session(['authenticated' => true, 'user_id' => $user->id, 'username' => $user->username]);
             return redirect('/home')->with('success', '¡Inicio de sesión exitoso!');
         }
 
         // Si las credenciales son incorrectas
         return redirect()->back()->with('error', 'Credenciales inválidas.');
+    }
+
+    public function logout()
+    {
+        // Eliminar las variables de sesión
+        session()->forget(['authenticated', 'user_id', 'username']);
+        return redirect('/login')->with('success', 'Has cerrado sesión correctamente.');
     }
 
     /**

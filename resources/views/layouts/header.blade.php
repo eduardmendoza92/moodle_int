@@ -1,4 +1,3 @@
-
 <div class="site-mobile-menu">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close">
@@ -19,14 +18,24 @@
                     </div>
 
                      <div class="col-6 col-lg-3 text-right">
-                        <!-- <a href="login.html" class="small mr-3">
-                            <span class="icon-lock"></span>
-                            Ingresar
-                        </a> -->
-                        <a href="/registro" class="small">
-                            <span class="icon-person"></span>
-                            Registro
-                        </a>
+                        @if (session('authenticated'))
+                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" class="small btn text-decoration-none" style="color:white;">
+                                    <span class="icon-exit_to_app"></span>
+                                    Log Out
+                                </button>
+                            </form>
+                        @else
+                            <a href="/login" class="small mr-3">
+                                <span class="icon-exit_to_app"></span>
+                                Log In
+                            </a>
+                            <a href="/registro" class="small">
+                                <span class="icon-person"></span>
+                                Registro
+                            </a>
+                        @endif
                     </div> 
 
                 </div>
@@ -35,7 +44,7 @@
         <div class="sticky-nav js-sticky-header">
             <div class="container position-relative">
                 <div class="site-navigation text-center">
-                    <a href="index.html" class="logo menu-absolute m-0">Learner<span class="text-primary">.</span></a>
+                    <a href="/home" class="logo menu-absolute m-0">Learner<span class="text-primary">.</span></a>
 
                     <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
                         <li class="{{ request()->is('home') ? 'active' : '' }}" ><a href="/home">Home</a></li>
